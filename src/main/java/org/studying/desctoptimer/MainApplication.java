@@ -4,22 +4,11 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-//import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-
-import static java.awt.event.WindowEvent.*;
 
 public class MainApplication extends Application {
-    //private final static String ICON = "images/icon_main.png";
     private final static String NAME = "DesktopTimer";
     private final static String FXML = "main-view.fxml";
 
@@ -29,7 +18,7 @@ public class MainApplication extends Application {
     private static javafx.scene.Parent root;
 
 
-    //private static final TimerExample timer = new TimerExample();
+    private static final MainTimer timer = new MainTimer();
     private Disposable subscription;
 
     public static void main(String[] args) {
@@ -64,7 +53,7 @@ public class MainApplication extends Application {
             subscription.dispose();
         }
 
-        //timer.exit();
+        timer.stop();
 
         controller = null;
         fxmlLoader = null;
@@ -88,7 +77,6 @@ public class MainApplication extends Application {
 
     private void setUI(){
         try {
-
             //name
             primaryStage.setTitle(NAME);
 
@@ -107,12 +95,17 @@ public class MainApplication extends Application {
     private void setListeners(){
         try {
             // Подписываемся на Observable и выводим значение времени в консоль
-//            subscription = timer.getTime()
-//                    .subscribe(time -> controller.timer_value.setText(time.toString()));
-//
-//            controller.OnStartButton(timer::run);
-//
-//            controller.OnStopButton(timer::stop);
+            subscription = timer.getTime().subscribe(time -> {
+                    Platform.runLater(()-> {
+                        controller.timer_value.setText(time);
+                        System.out.println("time is " + time);
+                    }
+                );
+            });
+
+            controller.OnStartButton(timer::run);
+
+            controller.OnStopButton(timer::stop);
 
             primaryStage.setOnCloseRequest(evt -> {
                 System.out.println("close app");
