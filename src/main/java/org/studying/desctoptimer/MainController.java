@@ -20,6 +20,9 @@ public class MainController implements Initializable {
     public Button stopButton;
     private Runnable onStopButtonClicked;
     @FXML
+    public Button resetButton;
+    private Runnable onResetButtonClicked;
+    @FXML
     public Label timer_value;
 
 //    @FXML
@@ -37,6 +40,12 @@ public class MainController implements Initializable {
             }
         });
 
+        resetButton.setOnAction(event -> {
+            if (onResetButtonClicked != null) {
+                onResetButtonClicked.run();
+            }
+        });
+
         stopButton.setOnAction(event -> {
             if (onStopButtonClicked != null) {
                 onStopButtonClicked.run();
@@ -51,6 +60,10 @@ public class MainController implements Initializable {
 
     public void OnStopButton(Runnable callback) {
         this.onStopButtonClicked = callback;
+    }
+
+    public void OnResetButton(Runnable callback) {
+        this.onResetButtonClicked = callback;
     }
 
 

@@ -22,6 +22,7 @@
             <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 0 0 0 0;">
                 <Button fx:id="startButton" text="start" textFill="black" />
                 <Button fx:id="stopButton" text="stop" textFill="black" />
+                <Button fx:id="resetButton" text="reset" textFill="black" />
             </HBox>
 
         </VBox>

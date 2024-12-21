@@ -64,7 +64,6 @@ public class MainApplication extends Application {
 
     private void initObjects(Stage stage){
         try {
-
             primaryStage = stage;
             fxmlLoader = new FXMLLoader(MainController.class.getResource(FXML));
             root = fxmlLoader.load();
@@ -106,6 +105,8 @@ public class MainApplication extends Application {
             controller.OnStartButton(timer::run);
 
             controller.OnStopButton(timer::stop);
+
+            controller.OnResetButton(timer::reset);
 
             primaryStage.setOnCloseRequest(evt -> {
                 System.out.println("close app");

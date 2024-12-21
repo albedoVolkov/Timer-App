@@ -25,8 +25,8 @@ public class MainTimer {
             TimerTask taskTimer = new TimerTask() {
                 public void run() {
                     if (!IsGoing) {this.cancel();}
-                    subject.onNext(String.format("%.3f", timeCount + 0.001));
                     timeCount = timeCount + 0.001;
+                    updateTime();
                 }
             };
             myTimer.schedule(taskTimer, 0, 1);
@@ -35,6 +35,15 @@ public class MainTimer {
 
     public void stop(){
         IsGoing = false;
+    }
+
+    public void reset(){
+        timeCount = 0.0000;
+        updateTime();
+    }
+
+    private void updateTime(){
+        subject.onNext(String.format("%.3f", timeCount));
     }
 
     public Observable<String> getTime(){
