@@ -1,50 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 
-<VBox style="-fx-background-color: #e8e7e7" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.14-internal" fx:controller="org.studying.desctoptimer.MainController">
+<VBox prefWidth="300.0" prefHeight="167.0" style="-fx-background-color: #e8e7e7" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studying.desctoptimer.MainController">
 
-    <StackPane style="-fx-padding: 10;">
-        <VBox alignment="CENTER" spacing="8.0" style="-fx-border-color: lightgrey; -fx-border-width: 1; -fx-padding: 10 10 5 10;">
+    <VBox style="-fx-padding: 10;">
 
-            <HBox alignment="CENTER_LEFT" spacing="15.0">
-                <Label text="TIME:" textFill="black" />
-                <HBox alignment="CENTER_LEFT" spacing="5.0" >
-                    <Label fx:id="timer_value" textFill="black" />
+        <VBox alignment="TOP_CENTER" spacing="4.0" minHeight="100" maxHeight="150" style="-fx-border-color: lightgrey; -fx-border-width: 1; -fx-padding: 5 10 5 10;">
+            <VBox alignment="CENTER">
+                <HBox alignment="CENTER_LEFT" minHeight="20" maxHeight="20" maxWidth="Infinity" style="-fx-padding: 0 0 0 0;">
+                    <Label style="-fx-background-color: #e8e7e7; -fx-padding: 0 0 0 0;" text="Интерфейс: DesktopTimer" textFill="black" />
                 </HBox>
-            </HBox>
 
+                <HBox alignment="CENTER_LEFT" minHeight="20" maxHeight="20" spacing="15.0">
+                    <Label text="TIME:" textFill="black" />
+                    <HBox alignment="CENTER_LEFT" spacing="5.0">
+                        <Label fx:id="timer_value" textFill="black" />
+                    </HBox>
+                </HBox>
+            </VBox>
 
-            <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 0 0 0 0;">
-                <Button fx:id="startButton" text="start" textFill="black" />
-                <Button fx:id="stopButton" text="stop" textFill="black" />
-                <Button fx:id="resetButton" text="reset" textFill="black" />
+            <HBox alignment="CENTER_LEFT" spacing="10" minHeight="50" maxHeight="50" >
+                <VBox fx:id="startPauseImageContainer"  minHeight="40.0" maxHeight="40.0" minWidth="40.0" maxWidth="40.0">
+                    <ImageView fx:id="startPauseImageView" fitHeight="40.0" fitWidth="40.0" style="-fx-padding: 0 0 0 0; -fx-border-color: lightgrey; -fx-border-width: 1; -fx-background-radius: 50;"/>
+                </VBox>
+                <VBox fx:id="resetImageContainer" minHeight="40.0" maxHeight="40.0" minWidth="40.0" maxWidth="40.0">
+                    <ImageView fx:id="resetImageView" fitHeight="40.0" fitWidth="40.0" style="-fx-padding: 0 0 0 0; -fx-border-color: lightgrey; -fx-border-width: 1; -fx-background-radius: 50;"/>
+                </VBox>
             </HBox>
 
         </VBox>
 
-        <VBox alignment="CENTER_LEFT" maxHeight="20" maxWidth="Infinity" style="-fx-padding: 0 0 0 8;">
-            <StackPane.margin>
-                <Insets top="-70" />
-            </StackPane.margin>
-            <Label style="-fx-background-color: #e8e7e7; -fx-padding: 0 3 0 3;" text="Интерфейс: DesktopTimer" textFill="black" />
-        </VBox>
-
-    </StackPane>
-
-
-
-<!--    <VBox spacing="10" alignment="BOTTOM_CENTER" style="-fx-padding: 10;" VBox.vgrow="ALWAYS">-->
-<!--        <VBox alignment="CENTER">-->
-<!--            <ImageView fx:id="imageView" fitHeight="40" fitWidth="40" pickOnBounds="true" preserveRatio="true"/>-->
-<!--        </VBox>-->
-<!--        <VBox alignment="CENTER" spacing="5.0">-->
-<!--            <Button style="-fx-padding: 3 15 3 15;" text="Сбросить настройки" textFill="black" />-->
-<!--        </VBox>-->
-<!--    </VBox>-->
+    </VBox>
 
 </VBox>

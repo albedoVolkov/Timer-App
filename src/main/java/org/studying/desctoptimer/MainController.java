@@ -2,68 +2,80 @@ package org.studying.desctoptimer;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Label;;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-//    final static String ICON = "images/icon_main.png";
-
-    @FXML
-    public Button startButton;
-    private Runnable onStartButtonClicked;
-    @FXML
-    public Button stopButton;
-    private Runnable onStopButtonClicked;
-    @FXML
-    public Button resetButton;
-    private Runnable onResetButtonClicked;
     @FXML
     public Label timer_value;
 
-//    @FXML
-//    private ImageView imageView;
+    private final static String stopImagePath =  "pause100.jpg";
+    private final static String startImagePath =  "start100.jpg";
+    private final static String resetImagePath =  "reset100.jpg";
+
+    @FXML
+    private ImageView resetImageView;
+    @FXML
+    private VBox resetImageContainer;
+    private Runnable onResetButtonClicked;
+
+    @FXML
+    private ImageView startPauseImageView;
+    @FXML
+    private VBox startPauseImageContainer;
+    private Runnable onStartPauseButtonClicked;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        InputStream iconStream = getClass().getResourceAsStream(ICON);
-//        Image image = new Image(iconStream);
-//        imageView.setImage(image);
 
-        startButton.setOnAction(event -> {
-            if (onStartButtonClicked != null) {
-                onStartButtonClicked.run();
+        //listeners
+        startPauseImageContainer.setOnMouseClicked(event -> {
+            if (onStartPauseButtonClicked != null) {
+                onStartPauseButtonClicked.run();
             }
         });
 
-        resetButton.setOnAction(event -> {
+        resetImageContainer.setOnMouseClicked(event -> {
             if (onResetButtonClicked != null) {
                 onResetButtonClicked.run();
             }
         });
 
-        stopButton.setOnAction(event -> {
-            if (onStopButtonClicked != null) {
-                onStopButtonClicked.run();
-            }
-        });
+    }
+
+    public void setStartImage() {
+        startPauseImageView.setImage(createImage(this,stopImagePath));
+    }
+
+    public void setPauseImage() {
+        startPauseImageView.setImage(createImage(this,startImagePath));
+    }
+
+    public void setResetImage() {
+      resetImageView.setImage(createImage(this,resetImagePath));
     }
 
 
-    public void OnStartButton(Runnable callback) {
-        this.onStartButtonClicked = callback;
-    }
 
-    public void OnStopButton(Runnable callback) {
-        this.onStopButtonClicked = callback;
+    public void OnStartPauseButton(Runnable callback) {
+        this.onStartPauseButtonClicked = callback;
     }
 
     public void OnResetButton(Runnable callback) {
         this.onResetButtonClicked = callback;
+    }
+
+
+    public static Image createImage(Object context, String resourceName) {
+        URL _url = context.getClass().getResource(resourceName);
+        assert _url != null;
+        return new Image(_url.toExternalForm());
     }
 
 

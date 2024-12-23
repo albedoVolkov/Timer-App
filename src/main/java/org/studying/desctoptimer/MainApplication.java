@@ -70,7 +70,7 @@ public class MainApplication extends Application {
             controller = fxmlLoader.getController();
 
         }catch (Exception e){
-            System.out.println("error = " + e.getMessage());
+            System.out.println("error 0 = " + e.getMessage());
         }
     }
 
@@ -80,14 +80,21 @@ public class MainApplication extends Application {
             primaryStage.setTitle(NAME);
 
             //scene
-            Scene scene = new Scene(root, 375, 360);
+            Scene scene = new Scene(root, 284, 128);
 
             primaryStage.setScene(scene);
-            primaryStage.setMinHeight(300);
+            primaryStage.setMinHeight(167);
             primaryStage.setMinWidth(300);
 
+            //set images
+            controller.setPauseImage();
+            controller.setResetImage();
+
+            //initial data
+            controller.timer_value.setText("0.000");
+
         }catch (Exception e){
-            System.out.println("error = " + e.getMessage());
+            System.out.println("error 1 = " + e.getMessage());
         }
     }
 
@@ -102,9 +109,15 @@ public class MainApplication extends Application {
                 );
             });
 
-            controller.OnStartButton(timer::run);
-
-            controller.OnStopButton(timer::stop);
+            controller.OnStartPauseButton(() ->{
+                if(timer.isRunning()){
+                    timer.stop();
+                   controller.setPauseImage();
+                }else{
+                    timer.run();
+                    controller.setStartImage();
+                }
+            });
 
             controller.OnResetButton(timer::reset);
 
@@ -113,7 +126,7 @@ public class MainApplication extends Application {
             });
 
         }catch (Exception e){
-            System.out.println("error = " + e.getMessage());
+            System.out.println("error 2 = " + e.getMessage());
         }
     }
 
